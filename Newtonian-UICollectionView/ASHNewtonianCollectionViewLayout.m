@@ -83,9 +83,10 @@ static CGFloat kItemSize = 100.0f;
     
     [self.dynamicAnimator.behaviors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if ([obj isKindOfClass:[UIAttachmentBehavior class]]) {
-            if ([[[obj items].firstObject indexPath] isEqual:indexPath]) {
+            NSArray <UICollectionViewLayoutAttributes*> *attributesList = (NSArray <UICollectionViewLayoutAttributes*>*)[obj items];
+            if ([[attributesList.firstObject indexPath] isEqual:indexPath]) {
                 attachmentBehaviour = obj;
-                attributes = [[obj items] firstObject];
+                attributes = [attributesList firstObject];
                 *stop = YES;
             }
         }
